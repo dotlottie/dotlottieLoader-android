@@ -2,14 +2,15 @@
 
 [![](https://jitpack.io/v/dotlottie/dotlottieloader-android.svg)](https://jitpack.io/#dotlottie/dotlottieloader-android)
 
-
 ## Introducing dotLottie
 
 <p align="center">
   <img src="assets/dotLottie2048-1024.png" width="400">
 </p>
 
-dotLottie is an open-source file format that aggregates one or more Lottie files and their associated resources into a single file. 
+> # ⚠️ This repository is not longer maintained. Please use the latest dotlottie-android [here](https://github.com/LottieFiles/dotlottie-android).
+
+dotLottie is an open-source file format that aggregates one or more Lottie files and their associated resources into a single file.
 They are ZIP archives compressed with the Deflate compression method and carry the file extension of ".lottie".
 
 ### dotLottieLoader
@@ -48,6 +49,7 @@ dependencies {
 ## Using dotLottie
 
 #### loading from network
+
 ```kotlin
 DotLottieLoader.with(context)
     .fromUrl(lottieUrl)
@@ -65,11 +67,13 @@ DotLottieLoader.with(context)
 #### loading from app assets
 
 Load from raw resource
+
 ```kotlin
 DotLottieLoader.with(context).fromRaw(rawResID).load(...)
 ```
 
 Load from assets
+
 ```kotlin
 DotLottieLoader.with(context).fromAsset(assetName).load(...)
 ```
@@ -108,19 +112,19 @@ DotLottieLoader.with(this)
     .load(object: DotLottieResult {
         override fun onSuccess(result: DotLottie) {
 
-            //set image handler. Check example app for 
+            //set image handler. Check example app for
             // sample source
             animationView.setImageAssetDelegate(
                 AppImageDelegate.getDelegate(
-                    this@MainActivity, 
+                    this@MainActivity,
                     result.images
                 )
             )
-            
+
             // set the animation
             result.animations?.entries.first()?.let {
                 val input = ByteArrayInputStream(it.value)
-                
+
                 // set animation from input stream. Pass non-null
                 // cachekey to let LottieAnimationView cache the
                 // animation internally as well
@@ -150,7 +154,6 @@ a new manifest with defaults (or provided defaults) will be generated
     ...
 ```
 
-
 ## Configurations
 
 The library provides some configuration options to customize its behavior
@@ -165,10 +168,9 @@ The library provides some configuration options to customize its behavior
         ))
 ```
 
-* `cacheStrategy` - the caching strategy to use, `DotLottieCacheStrategy.NONE`, `DotLottieCacheStrategy.MEMORY`, `DotLottieCacheStrategy.DISK`. Defaults to `DISK`
-* `cacheManager` - Responsible for handling the cache. Provide your own subclass of `DotLottieCache` to override the default. The default cache manager uses `LRUCache` for in memory, and `DiskLRUCache` for disk caching.
-* `DotLottieConverter` - Responsible for parsing incoming files and converting them to `DotLottie` objects. Provide custom implementations if needed
-
+- `cacheStrategy` - the caching strategy to use, `DotLottieCacheStrategy.NONE`, `DotLottieCacheStrategy.MEMORY`, `DotLottieCacheStrategy.DISK`. Defaults to `DISK`
+- `cacheManager` - Responsible for handling the cache. Provide your own subclass of `DotLottieCache` to override the default. The default cache manager uses `LRUCache` for in memory, and `DiskLRUCache` for disk caching.
+- `DotLottieConverter` - Responsible for parsing incoming files and converting them to `DotLottie` objects. Provide custom implementations if needed
 
 #### Per request configurations
 
@@ -198,24 +200,24 @@ DotLottieLoader.with(this)
 
 [Naail Abdul Rahman](https://github.com/kudanai) | kudanai@gmail.com
 
-
 # License
+
 ```text
 Copyright (c) 2020 LottieFiles
 
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software and 
-associated documentation files (the "Software"), to deal in the Software without restriction, 
-including without limitation the rights to use, copy, modify, merge, publish, distribute, 
-sublicense, and/or sell copies of the Software, and to permit persons to whom the Software 
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and
+associated documentation files (the "Software"), to deal in the Software without restriction,
+including without limitation the rights to use, copy, modify, merge, publish, distribute,
+sublicense, and/or sell copies of the Software, and to permit persons to whom the Software
 is furnished to do so, subject to the following conditions:
 
-The above copyright notice and this permission notice shall be included in all 
+The above copyright notice and this permission notice shall be included in all
 copies or substantial portions of the Software.
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, 
-INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR 
-PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE 
-FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, 
-TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE 
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED,
+INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR
+PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE
+FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT,
+TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE
 OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
 ```
